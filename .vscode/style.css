@@ -82,7 +82,7 @@ body * {
 }
 
 .light #switch button {
-  animation: slide-in 0.2s forwards;
+  animation: slide-in 0.4s forwards;
 }
 
 #switch button:hover {
@@ -166,3 +166,34 @@ footer {
   text-align: center;
   font-size: 14px;
 }
+
+@media (min-width: 700px) {
+  :root {
+    --br-url: url(./assets/bg-desktop.jpg);
+  }
+  .light{
+    --bg-url: url(./assets;bg-desktop-light.jpg);
+  }
+}
+
+/* animation*/
+@keyframes slide-in{
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+@keyframes slide-back{
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
+}
+
+/*link do projeto
+https://jessymaciel.github.io/Primeiro-Projeto */
