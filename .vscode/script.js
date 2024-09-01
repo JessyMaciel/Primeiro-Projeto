@@ -1,64 +1,25 @@
-handleSwitchThemeEvents()
-function handleSwitchThemeEvents() {
-  /**
-   * @type {HTMLInputElement | null}
-   */
-  const switchTheme = document.getElementById("switch-toggle-theme")
+function toggleMode() {
+  const html = document.documentElement
 
-  if (!switchTheme) return
+  // if (html.classList.contains ("light"))
+  // {
+  // html.classList.remove ("light");
+  //}
+  //else {
+  //   html.classList.add ("light");
+  // } não é necessário fazer tudo isto, pois existe essa ferramenta abaixo que simplifica
 
-  switchTheme.addEventListener("change", (event) => toggleTheme(event))
-  switchTheme.addEventListener("keydown", (event) => {
-    event.stopPropagation()
-    const { key, target } = event
-    if (key === "Enter") {
-      target.checked = !target.checked
-      toggleTheme(target)
-    }
-  })
-}
+  html.classList.toggle("light")
 
-/**
- * @param {Event} event
- */
-function toggleTheme(event) {
-  event.stopPropagation()
-  const { target } = event
+  // agora repetir a lógica com imagem
+  const img = document.querySelector("#profile img")
 
-  if (target.checked) {
-    document.body.classList.remove("dark")
-    return
+  //substituir a imagem
+  if (html.classList.contains("light")) {
+    img.setAttribute("src", "./assets/avatar-light.png")
+    // se tiver light mode, adicionar a imagem light.
+  } else {
+    img.setAttribute("src", "./assets/avatar.png")
+    // se não tiver light mode, adicionar a imagem padrão.
   }
-
-  document.body.classList.add("dark")
-}
-
-const isSystemThemeDark = () => {
-  if (
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  ) {
-    return true
-  }
-
-  return false
-}
-
-handleDefaultTheme()
-function handleDefaultTheme() {
-  /**
-   * @type {HTMLInputElement | null}
-   */
-  const switchTheme = document.getElementById("switch-toggle-theme")
-
-  if (!switchTheme) return
-
-  if (isSystemThemeDark()) {
-    document.body.classList.add("dark")
-    switchTheme.checked = false
-    return
-  }
-
-  document.body.classList.remove("dark")
-  switchTheme.checked = true
 }
